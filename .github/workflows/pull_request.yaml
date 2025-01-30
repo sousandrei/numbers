@@ -13,19 +13,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-        name: Checkout
 
       - uses: actions/setup-node@v4
-        name: Setup Node
-        with:
-          cache: npm
-          cache-dependency-path: client/package-lock.json
 
       - run: npm install
-        name: npm Install
 
       - run: npm run build
-        name: npm Build
 
-      - run: npx biome check
-        name: biome check
+      - run: npm run lint

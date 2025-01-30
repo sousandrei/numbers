@@ -1,8 +1,8 @@
-import type { MetaFunction } from "@remix-run/node";
+import type { Route } from "./+types/home";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-export const meta: MetaFunction = () => {
+export const meta: Route.MetaFunction = () => {
 	return [
 		{ title: "Numbers" },
 		{ name: "description", content: "Quickest number convertion!" },
@@ -81,9 +81,9 @@ function Card({ text, base, value, setValue }: CardProps) {
 	return (
 		<div
 			className="flex flex-col gap-6 h-72 w-full p-10 justify-center
-			rounded-md shadow-md border
-			bg-slate-100 dark:border-slate-900
-			dark:bg-slate-900"
+			rounded-md shadow-md 
+			border-slate-100 dark:border-slate-900
+			bg-slate-100 dark:bg-slate-900"
 		>
 			<p
 				className="text-2xl font-bold text-center 

@@ -1,13 +1,4 @@
-import type { Route } from "./+types/home";
-
 import { useState } from "react";
-
-export const meta: Route.MetaFunction = () => {
-	return [
-		{ title: "Numbers" },
-		{ name: "description", content: "Quickest number convertion!" },
-	];
-};
 
 const CARDS = [
 	{ text: "Decimal", base: 10 },
@@ -16,7 +7,7 @@ const CARDS = [
 	{ text: "Octal", base: 8 },
 ];
 
-export default function Index() {
+export default function App() {
 	const [dark, setDark] = useState(false);
 
 	const toggleDarkMode = () => {
@@ -31,13 +22,13 @@ export default function Index() {
 	));
 
 	return (
-		<div className="flex h-screen w-full flex flex-col items-center justify-center p-10 xl:p-48">
-			<div className="grid xs:grid-cols-1 sm:grid-cols-2 w-full gap-4 justify-items-end">
+		<div className="flex h-screen w-full flex-col items-center justify-center p-10 xl:p-48 bg-white dark:bg-black transition-colors duration-300">
+			<div className="grid grid-cols-1 sm:grid-cols-2 w-full gap-4 justify-items-center">
 				{cards}
 			</div>
 
 			<div className="absolute right-3 top-3">
-				<button type="button" onClick={() => toggleDarkMode()}>
+				<button type="button" onClick={() => toggleDarkMode()} className="text-2xl cursor-pointer">
 					{dark ? "🌖" : "🌒"}
 				</button>
 			</div>
@@ -71,7 +62,7 @@ function Card({ text, base, value, setValue }: CardProps) {
 		}
 
 		const newValue = Number.parseInt(e.target.value, base);
-		if (Number.isNaN(e.target.value)) {
+		if (Number.isNaN(newValue)) {
 			return;
 		}
 
@@ -82,7 +73,7 @@ function Card({ text, base, value, setValue }: CardProps) {
 		<div
 			className="flex flex-col gap-6 h-72 w-full p-10 justify-center
 			rounded-md shadow-md 
-			border-slate-100 dark:border-slate-900
+			border border-slate-100 dark:border-slate-800
 			bg-slate-100 dark:bg-slate-900"
 		>
 			<p
@@ -94,8 +85,8 @@ function Card({ text, base, value, setValue }: CardProps) {
 			<input
 				className="w-full text-xl p-4 rounded-md
 				text-slate-950 bg-slate-300
-				dark:text-slate-100 dark:bg-gray-800"
-				type={text}
+				dark:text-slate-100 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+				type="text"
 				value={Number(value).toString(base)}
 				onChange={handleChange}
 			/>
